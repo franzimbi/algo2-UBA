@@ -1,0 +1,57 @@
+ejercicio 3)
+
+Diseñar un algoritmo de ordenamiento no comparativo para ordenar un conjunto de cartas
+españolas (las utilizadas en el juego de truco). Se desea que se vean primero las cartas de
+oros, luego las de espadas, luego las de bastos y finalmente las de copas; y a su vez cada carta
+del mismo palo resulte ordenada de menor a mayor. Proponer un ejemplo y mostrar un
+seguimiento.
+a) ¿Es estable? Justificar
+b) ¿Cuál es el orden del algoritmo? Justificar
+c) ¿Qué condiciones satisface el problema para poder usar el algoritmo propuesto?
+
+
+propongo como solucion el algoritmo no comparativo bin sort. 
+
+c) las condiciones son que: 
+-la cantidad de elementos que tengo en un mazo de cartas es discreto (son 50 cartas).
+-las cartas tienen una distribucion uniforme, ya que cada palo tiene la misma cantidad de cartas.
+
+ el algoritmo lo que hace es, primero que nada, separar las cartas en distintos "baldes". esto que llamo "balde" seria una estructura capaz de almacenar las cartas en orden de llegada.
+ cada uno de los baldes almacenara las cartas del mismo palo (oros, espadas, bastos y copas).
+ el 2do paso del algoritmo seria ordenar cada estructura de todos los palos en orden numerico (de menor a mayor). esto se puede hacer con un algoritmo de ordenamiento comparativo como mergesort.
+ ahora solo que ir "balde por balde" (estructura por estructura) e ir juntando los resultados en orden de palos, primero el oro, luego la espada y asi.
+ 
+ a) la estabilidad del algoritmo bin sort depende del algoritmo auxiliar utilizado. en mi seguimiento decidi sugerir mergesort, por lo que ese bin sort seria un algoritmo estable ya que mergesort es estable. que un algoritmo sea estable significa que todos los elementos iguales respetan el orden entre si en el que estaban originalmente antes de ser ordenados.
+ 
+ b) el orden del algoritmo es O(n+k). donde k=4, la cantidad de baldes usados.
+ la aparicion de k depende de que el log(k) no sea despreciable al lado de n (la cantidad de cartas). como log(k) = log(4) = 0,60 << 50 cartas, k debe ir en la ecuacion de complejidad.
+ 
+ 
+ seguimiento: 
+ 
+ funcion bitsort(arr, k):   // arr -> oro 12 - basto 10 - espada 15 - copa 12 - oro 10 - ...
+ 	crear_baldes(oro , espada, basto,copa)
+ 	
+ 	for i: 0 a 50
+ 		if(palo-> oro)
+ 		   agregar_a_balde_oro
+ 		 //hago lo mismo con todos los palos
+ 		 
+ 	me quedaria:
+ 	
+ 	oros: 12 - 10 ...
+ 	espadas: 15 - ...
+ 	bastos: ...
+ 	copas: ...
+ 	
+ 	los ordeno por mergsort de menos a mayor 
+ 	oros: 1 - 2 ...
+ 	espadas: 1 - ...
+ 	bastos: ...
+ 	copas: ...
+ 	
+ 	junto todo:
+ 	
+ 	oro1 ,oro2, ..., espada1, espada2, ... basto1,...copa1...copa12.
+ 	
+ 	
